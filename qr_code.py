@@ -1,6 +1,7 @@
 import qrcode
+from settings import settings
 
-url = "https://t.me/+J6HuiDI8IzxhYjIy"  # Telegram group link
+url = settings.TELEGRAMM_URL  # Telegram group link
 qr = qrcode.QRCode(
     version=None,  # automatic sizing
     error_correction=qrcode.constants.ERROR_CORRECT_H,  # high redundancy (better for logos/prints)
