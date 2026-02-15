@@ -52,7 +52,6 @@ async def append_row(row: list):
     Append a CSV row safely from async context. Uses an asyncio.Lock to
     avoid concurrent writes from multiple coroutines within the same process,
     and offloads actual file I/O to a thread with asyncio.to_thread().
-
     """
     async with app.state.csv_lock:
         def write():
