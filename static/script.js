@@ -1,18 +1,48 @@
 // 1. Music Player
 let isPlaying = false;
 const audio = document.getElementById("bg-music");
+audio.volume = 0.3;
 const btn = document.getElementById("music-btn");
 
 function toggleMusic() {
     if (isPlaying) {
         audio.pause();
         btn.innerText = "🎵 Play Music";
+        isPlaying = false;
     } else {
-        audio.play();
-        btn.innerText = "⏸ Pause";
+        audio.play().then(() => {
+            btn.innerText = "⏸ Pause";
+            isPlaying = true;
+        }).catch(error => {
+            console.log("Playback failed:", error);
+        });
     }
-    isPlaying = !isPlaying;
 }
+
+function tryAutoPlay() {
+    audio.play().then(() => {
+        isPlaying = true;
+        btn.innerText = "⏸ Pause";
+    }).catch(error => {
+        console.log("Audio autoplay failed, waiting for interaction:", error);
+        // Fallback: Play on first interaction
+        const enableAudio = (e) => {
+            // Remove listener on first interaction (whether it's the button or elsewhere)
+            document.removeEventListener('click', enableAudio);
+
+            // If the user clicked the music button, let the button's own handler do the work
+            if (e.target.closest('#music-btn')) return;
+
+            if (!isPlaying) {
+                toggleMusic();
+            }
+        };
+        document.addEventListener('click', enableAudio);
+    });
+}
+
+// Try to play immediately when loaded
+window.addEventListener('load', tryAutoPlay);
 
 // Wait for DOM to load
 document.addEventListener("DOMContentLoaded", function () {
