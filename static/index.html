@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anastasia & Stanislav Wedding</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Floating Music Button -->
+    <button id="music-btn" onclick="toggleMusic()">🎵 Play Music</button>
+    <audio id="bg-music" loop>
+        <source src="If You Want Love_part.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="mobile-container">
+        <!-- Background Vines Container -->
+        <div id="vines-container"></div>
+
+        <!-- 1. Hero / Cover -->
+        <header class="hero">
+            <div class="image-frame">
+                <!-- Replace with your photo -->
+                <img src="images/wedding_top_img.png" alt="Couple">
+            </div>
+            <h1>Анастасия & Станислав</h1>
+            <p class="date">01 / 08 / 2026</p>
+        </header>
+
+        <!-- Countdown Section -->
+        <section class="countdown-section">
+            <div id="countdown-container">
+                <div class="timer-unit">
+                    <span id="weeks" class="timer-num">00</span>
+                    <span class="timer-label">недель</span>
+                </div>
+                <div class="timer-unit">
+                    <span id="days" class="timer-num">00</span>
+                    <span class="timer-label">дней</span>
+                </div>
+                <div class="timer-unit">
+                    <span id="hours" class="timer-num">00</span>
+                    <span class="timer-label">часов</span>
+                </div>
+                <div class="timer-unit">
+                    <span id="minutes" class="timer-num">00</span>
+                    <span class="timer-label">минут</span>
+                </div>
+                <div class="timer-unit">
+                    <span id="seconds" class="timer-num">00</span>
+                    <span class="timer-label">секунд</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Intro -->
+        <section class="intro">
+            <!-- Birds 1: Flying Top Right -->
+            <img id="topBirdsGif" class="top-birds" src="images/birds/video/Clipchamp_V4.gif" alt="BirdsGif">
+            <img id="topBirdsImg" class="decor-birds top-birds" src="images/birds/2_flying_birds backgroud.png"
+                alt="Birds">
+            <h2>Дорогие Гости!</h2>
+            <p align="center">Мы рады сообщить Вам, что 01.08.2026 состоится самое главное торжество в нашей жизни -
+                день нашей
+                свадьбы! <br> Этот день много значит для нас — будем рады видеть вас рядом, чтобы вместе отметить начало
+                нашей новой главы.
+            </p>
+        </section>
+
+        <!-- 3. Calendar -->
+        <section class="calendar">
+            <div class="day">
+                <span>FRI</span>
+                <span>31</span>
+            </div>
+            <div class="day active">
+                <span>SAT</span>
+                <span class="circle">01</span>
+            </div>
+            <div class="day">
+                <span>SUN</span>
+                <span>02</span>
+            </div>
+        </section>
+
+        <h2 style="margin-top:0.1em; margin-bottom:0.1em">Свадебное расписание:</h2>
+        <!-- 4. Timeline -->
+        <section class="timeline" id="timeline-section">
+
+            <!-- The Heart that will move -->
+            <div id="flying-heart">❤</div>
+
+            <!-- The SVG Wavy Line (Replacing the PNG) -->
+            <!-- This path draws a vertical sine wave -->
+            <svg class="wavy-svg" preserveAspectRatio="none" viewBox="0 0 100 1200">
+                <path id="wave-path" d="M50,0
+             C 60,160 120,220 50,270
+             S 15,400 50,500
+             S 15,600 50,750
+             S 85,900 50,1000
+             S 20,1150 50,1200" fill="none" stroke="#A4B494" stroke-width="2" stroke-linecap="round" />
+            </svg>
+
+            <!-- Your Events -->
+            <div class="timeline-content">
+                <!-- Item 1 -->
+                <div class="timeline-item">
+                    <div class="time">17:00</div>
+                    <div class="event">Приветственные коктейли (Welcome drink) </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="timeline-item">
+                    <div class="time">17:45</div>
+                    <div class="event">Церемония бракосочетания на летней веранде</div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="timeline-item">
+                    <div class="time">18:00</div>
+                    <div class="event">Начало Банкета</div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="timeline-item">
+                    <div class="time">20:00</div>
+                    <div class="event">Горячее</div>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="timeline-item">
+                    <div class="time">22:00</div>
+                    <div class="event">Чайный стол</div>
+                </div>
+
+                <!-- Item 6 -->
+                <div class="timeline-item">
+                    <div class="time">23:00</div>
+                    <div class="event">Final words. The evening ending</div>
+                </div>
+
+            </div>
+
+            <!-- Decorative Flowers in the corner -->
+            <img class="timeline-flowers" src="images/flowers/flowers_colored background.png" alt="Flowers">
+        </section>
+
+        <!-- 5. Dress Code -->
+        <section class="details">
+            <h2>Дресс Код <i>(Dress Code)</i></h2>
+            <p> Палетка цветов на нашей свадьбе cамая разнообразная <br>
+                Нам совсем не важен цвет наряда <br>
+                Мы хотим поделиться с Вами нашим событием. <br>
+                Будем рады видеть вас в настроении нашего праздника!</p>
+
+            <div class="palette-container">
+                <!-- Мазок 1: Шалфей (Sage) -->
+                <!-- Мазок 2: Пыльно-голубой (Dusty Blue) -->
+                <!-- Мазок 3: Теракота/Приглушенная роза (Muted Rose) -->
+                <!-- Мазок 4: Теплый песок (Warm Sand) -->
+                <!-- Мазок 5: Оливковый (Dark Olive) -->
+                <div class="brush-stroke timeline-item" style="--color: #8FBC8F; --delay: 0s;"></div>
+                <div class="brush-stroke timeline-item" style="--color: #556B2F; --delay: 0.1s;"></div>
+                <div class="brush-stroke timeline-item" style="--color: #7DA0B0; --delay: 0.2s;"></div>
+                <div class="brush-stroke timeline-item" style="--color: #D49A89; --delay: 0.3s;"></div>
+                <div class="brush-stroke timeline-item" style="--color: #B5828C; --delay: 0.4s;"></div>
+                <div class="brush-stroke timeline-item" style="--color: #FFFFFF; --delay: 0.6s;"></div>
+                <div class="brush-stroke timeline-item" style="--color: #E6D8AD; --delay: 0.7s;"></div>
+                <div class="brush-stroke timeline-item" style="--color: #6B705C; --delay: 0.8s;"></div>
+                <div class="brush-stroke timeline-item" style="--color: #2F2F2F; --delay: 0.9s;"></div>
+            </div>
+        </section>
+
+        <section class="location">
+            <h2>Место проведения</h2>
+            <div class="venue-info">
+                <h3>Гостиничный комплекс "Чайка"</h3>
+                <p>г. Караганда, Улица Мичурина, 11а, м-н Михайловка</p>
+            </div>
+            <img class="decor-birds location-birds" src="images\birds\several_flying_birds background.png" alt="Birds">
+
+            <!-- КОЛЛАЖ ИЗ ФОТО -->
+            <div class="gallery-collage">
+                <!-- Главное фото (Арка) -->
+                <div class="photo-main timeline-item">
+                    <img src="images/chaika/main_1.jpg" alt="Venue Main">
+                </div>
+
+                <!-- Фото детали 1 (Интерьер/Еда) - Слева внизу -->
+                <div class="photo-small p-left timeline-item">
+                    <img src="images/chaika/hall_2.jpg" alt="Detail 1">
+                </div>
+
+                <!-- Фото детали 2 (Атмосфера) - Справа вверху -->
+                <div class="photo-small p-right timeline-item">
+                    <img src="images/chaika/atmo_1.jpg" alt="Detail 2">
+                </div>
+            </div>
+
+
+            <!-- КАРТА -->
+            <div class="map-section timeline-item">
+                <h2>Мы будем ждать вас здесь:</h2>
+
+                <div class="map-frame">
+                    <!-- Код карты Яндекс для гостиницы Чайка -->
+                    <iframe
+                        src="https://yandex.ru/map-widget/v1/?ll=73.071380%2C49.807413&mode=search&oid=11822477302837780&ol=geo&z=17"
+                        width="100%" height="300" frameborder="0" allowfullscreen="true">
+                    </iframe>
+                </div>
+
+                <!-- Кнопка навигатора (оставим ссылку на 2ГИС, так как там удобнее строить маршрут) -->
+                <a href="https://go.2gis.com/bLZsn" target="_blank" class="map-btn">
+                    Построить маршрут (2Gis)
+                </a>
+                <img class="decor-birds map-birds" src="images\birds\corner_decoration background.png" alt="Birds">
+            </div>
+        </section>
+
+        <!-- 6. RSVP Form (The Python Part) -->
+        <section class="rsvp">
+            <!-- Birds 3: RSVP Corner Left -->
+
+            <!-- HIDDEN CONTENT (Initially closed) -->
+            <div id="rsvp-content" class="rcvp-content">
+                <h2 style="margin-top:0.1em; margin-bottom:0.1em">Анкета</h2>
+                <p align="center"> Подтвердите свое присутствие до 7 июня 2026 года</p>
+                <form id="rsvpForm">
+                    <input type="text" minlength="4" pattern="[a-zA-Z0-9_-]+" name="name"
+                        placeholder="Ваше Фамилия, Имя" required>
+
+                    <select name="attendance">
+                        <option value="yes">Родные мои, Я обязательно буду</option>
+                        <option value="maybe">Пока не уверен</option>
+                        <option value="no">Нет, к сожалению у меня не получится</option>
+                    </select>
+
+                    <!-- Секция: Спутник -->
+                    <div class="toggle-group">
+                        <label class="toggle-row">
+                            <span>Я буду с парой</span>
+                            <input type="checkbox" id="check-plus-one" name="has_plus_one">
+                            <span class="custom-toggle"></span>
+                        </label>
+
+                        <!-- Скрытое поле, выезжает при клике -->
+                        <div class="hidden-input-wrapper" id="field-plus-one">
+                            <input type="text" name="plus_one_name" placeholder="Имя спутника / спутницы">
+                        </div>
+                    </div>
+
+                    <!-- Секция: Дети -->
+                    <div class="toggle-group">
+                        <label class="toggle-row">
+                            <span>Я буду с детьми</span>
+                            <input type="checkbox" id="check-children" name="has_children">
+                            <span class="custom-toggle"></span>
+                        </label>
+
+                        <!-- Скрытые поля -->
+                        <div class="hidden-input-wrapper" id="field-children">
+                            <input type="text" name="child_1" placeholder="Имя и возраст ребенка">
+                            <input type="text" name="child_2" placeholder="Второй ребенок (если есть)">
+                        </div>
+                    </div>
+
+                    <label>Что предпочитаете из алкоголя?:</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="alcohol" value="champagne"> Шампанское</label>
+                        <label><input type="checkbox" name="alcohol" value="wine_white"> Вино белое</label>
+                        <label><input type="checkbox" name="alcohol" value="wine_red"> Вино красное</label>
+                        <label><input type="checkbox" name="alcohol" value="vodka"> Водка</label>
+                        <label><input type="checkbox" name="alcohol" value="whiskey"> Коньяк/Виски</label>
+                        <label><input type="checkbox" name="alcohol" value="none"> Безалкогольное</label>
+                    </div>
+
+                    <!-- BUTTON TO OPEN THE FORM -->
+                    <div class="rsvp-toggle-container">
+                        <span id="open-comment-btn" class="comment-toggle">
+                            <span class="emoji">💬</span>
+                            <span class="hover-underline">Оставить пожелание для молодоженов</span>
+                        </span>
+                    </div>
+
+                    <div class="hidden-input-wrapper" id="field-comment">
+                        <textarea name="comment" placeholder="Ваше сообщение или пожелание"></textarea>
+                    </div>
+
+                    <button type="submit">Отправить ответ</button>
+                    <p id="form-message"></p>
+                </form>
+            </div>
+        </section>
+
+        <!-- Birds 2: Bottom Left (or somewhere appropriate) -->
+        <!--        <img class="decor-birds bottom-birds" src="images/birds/two small elegant birds background.png" alt="Birds">-->
+        <div id="birds-media-container" class="bottom-birds">
+            <img id="hugBirdsGif" class="video" src="images\birds\video\hugging_birds_reverse2.gif" alt="BirdsGif">
+        </div>
+
+        <footer>
+            <h2>До скорой встречи!</h2>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

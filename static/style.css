@@ -1,0 +1,1083 @@
+/* =========================================
+   1. GLOBAL VARIABLES & RESET
+   ========================================= */
+
+@font-face {
+    font-family: 'FrenchKissscript';
+    src: url('fonts/Floriselscript.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    --bg-color: #F9F9F4;
+    /* Light Cream Background */
+    --primary-color: #4A5D45;
+    /* Dark Sage Green */
+    --accent-color: #A4B494;
+    /* Light Sage Green */
+    --text-color: #333333;
+    /* Dark Grey Text */
+    --font-head: 'FrenchKissscript', cursive;
+    --font-body: 'Montserrat', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #e0e0e0;
+    /* Darker desktop background to highlight the "phone" */
+    margin: 0;
+    font-family: var(--font-body);
+    display: flex;
+    justify-content: center;
+    color: var(--text-color);
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* =========================================
+   2. MOBILE CONTAINER (The "Phone" View)
+   ========================================= */
+.mobile-container {
+    background-color: var(--bg-color);
+    width: 100%;
+    max-width: 480px;
+    /* Limits width like a phone */
+    min-height: 100vh;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow-x: hidden;
+    /* Prevents side scrolling */
+}
+
+/* =========================================
+   2.1. VINES CONTAINER
+   ========================================= */
+#vines-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    /* Let clicks pass through */
+    z-index: 0;
+    /* Behind everything */
+    overflow: hidden;
+}
+
+/* =========================================
+   2.2. DECORATIVE BIRDS
+   ========================================= */
+.decor-birds {
+    position: absolute;
+    pointer-events: none;
+    /* Let clicks pass through */
+    opacity: 0.9;
+    mix-blend-mode: multiply;
+    /* Makes white background transparent */
+    z-index: 0;
+    /* Behind text if possible */
+}
+
+/* 1. Intro Section Birds (Flying) */
+.top-birds {
+    position: absolute;
+    top: -30px;
+    right: 10px;
+    width: 140px;
+    transform: rotate(10deg);
+}
+
+#topBirdsImg {
+    display: none;
+}
+
+/* 2. Location Section Birds (top left) */
+.location-birds {
+    top: 300px;
+    left: 20%;
+    transform: translateX(-70%) rotate(-5deg);
+    width: 80px;
+
+}
+
+/* 2. Location Section Birds (Hugging) */
+
+.video {
+    width: 60%;
+    height: 65%;
+    object-fit: cover;
+    background-color: transparent;
+    mix-blend-mode: screen;
+    position: relative;
+    object-position: center bottom;
+    overflow: hidden;
+    transform: translateY(10%) scaleY(85%) translateX(-5%);
+}
+
+.bottom-birds {
+    position: absolute;
+    bottom: 350px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-5deg);
+    width: 250px;
+    height: 140px;
+    /* Adjust based on video aspect ratio */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+
+/* 3. Location Birds (Left of Button) */
+.map-birds {
+    bottom: -10px;
+    left: 15px;
+    width: 130px;
+    z-index: 1;
+}
+
+
+/* Ensure content sits ABOVE vines */
+.hero,
+.intro,
+.calendar,
+.timeline,
+.details,
+.location,
+.rsvp,
+footer {
+    position: relative;
+    z-index: 2;
+}
+
+/* Headings */
+h1,
+h2 {
+    font-family: var(--font-head);
+    color: var(--primary-color);
+    font-weight: 400;
+    text-align: center;
+    font-size: 3rem;
+}
+
+/* Less space before paragraphs that follow headings */
+h2+p {
+    margin-top: 0.3em;
+}
+
+/* Standard Section Padding */
+section {
+    padding: 20px 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 1s forwards;
+}
+
+/* =========================================
+   3.1. COUNTDOWN SECTION
+   ========================================= */
+.countdown-section {
+    padding: 10px 20px 30px;
+    text-align: center;
+    background: transparent;
+}
+
+#countdown-container {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.timer-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 50px;
+    background: transparent;
+    color: var(--primary-color);
+    padding: 10px 5px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(164, 180, 148, 0.2);
+    /* Subtle accent border */
+}
+
+.timer-num {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    font-family: var(--font-head);
+}
+
+.timer-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #888;
+    margin-top: 4px;
+}
+
+/* =========================================
+   3. HERO SECTION (Top Image)
+   ========================================= */
+.hero {
+    position: relative;
+    padding-top: 20px;
+    text-align: center;
+    animation: fadeIn 1s forwards;
+}
+
+
+.image-frame {
+    width: 90%;
+    height: 480px;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    background: transparent;
+}
+
+.image-frame img {
+    width: 100%;
+    height: 480px;
+    object-fit: cover;
+    object-position: center bottom;
+    /* смещение вверх */
+
+    -webkit-mask-image: url("masks/arch-vignette.svg?v=6");
+    -webkit-mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center top;
+
+    mask-image: url("masks/arch-vignette.svg?v=6");
+    mask-size: 100% 100%;
+    mask-repeat: no-repeat;
+    mask-position: center top;
+}
+
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin: 10px 0;
+}
+
+.hero .date {
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+}
+
+/* =========================================
+   4. CALENDAR
+   ========================================= */
+.calendar {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.day {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #999;
+}
+
+.day.active {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.day.active .circle {
+    border: 1px solid var(--primary-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+/* =========================================
+   5. TIMELINE (SCROLLYTELLING ANIMATION)
+   ========================================= */
+.timeline {
+    position: relative;
+    /* IMPORTANT: Height ensures we have enough room to scroll */
+    min-height: 1400px;
+    overflow: visible;
+    padding: 0;
+    /* We handle padding inside .timeline-content */
+}
+
+/* The SVG Wavy Line */
+.wavy-svg {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    /* Centers the SVG */
+    width: 250px;
+    /* How wide the wave swings left/right */
+    height: 100%;
+    /* Stretches to bottom of section */
+    z-index: 0;
+    pointer-events: none;
+    /* Allows clicking through the line */
+    /* THE GLOW EFFECT */
+    filter: drop-shadow(0px 2px 3px rgba(74, 93, 69, 0.3));
+}
+
+/* Optional: Make the line animate slightly (breathing effect) */
+#wave-path {
+    transition: d 0.5s ease;
+}
+
+/* Moving flowers in bottom right */
+.timeline-flowers {
+    position: absolute;
+    bottom: 0px;
+    left: 5px;
+    width: 180px;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.9;
+    mix-blend-mode: multiply;
+    /* Makes white background transparent */
+}
+
+/* The Moving Heart */
+#flying-heart {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+    color: var(--primary-color);
+    background: var(--bg-color);
+    /* Matches background to hide the line behind it */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    will-change: transform;
+    /* Performance optimization */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Container for text items */
+.timeline-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+    width: 100%;
+}
+
+/* Individual Events */
+.timeline-item {
+    width: 33%;
+    /* Fits on one side of the line */
+    background: transparent;
+    padding: 10px;
+    border-radius: 10px;
+    /*box-shadow: 0 4px 15px rgba(0,0,0,0.05);*/
+    margin-bottom: 100px;
+    /* LARGE GAP: Gives the heart time to travel */
+    position: relative;
+
+    /* --- ANIMATION SETUP --- */
+    opacity: 0;
+    /* Invisible */
+    transform: translateY(50px);
+    /* Pushed down 50px */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    /* Smooth float up */
+    will-change: opacity, transform;
+}
+
+/* 2. The Ending State (Visible & In Place) */
+.timeline-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+    /* Returns to original position */
+}
+
+/* ODD Items (Left Side) */
+.timeline-item:nth-child(even) {
+    align-self: flex-start;
+    margin-left: 15px;
+    /* Spacing from screen edge */
+    text-align: right;
+}
+
+/* EVEN Items (Right Side) */
+.timeline-item:nth-child(odd) {
+    align-self: flex-end;
+    margin-right: 15px;
+    /* Spacing from screen edge */
+    text-align: left;
+}
+
+/* Event Text Styling */
+.timeline-item .time {
+    font-weight: bold;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.timeline-item .event {
+    font-size: 1rem;
+}
+
+/* =========================================
+   6. DRESS CODE (ИСПРАВЛЕННЫЙ)
+   ========================================= */
+
+/* Контейнер для палетки */
+.palette-container {
+    display: flex;
+    flex-direction: row;
+    /* Выстраиваем в ряд */
+    justify-content: center;
+    /* По центру */
+    flex-wrap: wrap;
+    /* Если экран узкий, переносим на 2-й ряд */
+    gap: 15px;
+    /* Отступы между пятнами */
+    margin-top: 30px;
+    width: 100%;
+}
+
+/* Базовый стиль мазка */
+.details .timeline-item.brush-stroke {
+    /* 1. Уменьшаем размер */
+    width: 50px;
+    height: 50px;
+
+    /* 2. Цвет с градиентом для эффекта "затухания краски" */
+    /* Центр - насыщенный, края - прозрачные */
+    background: radial-gradient(circle at 40% 40%, var(--color), transparent 85%);
+    background-color: transparent;
+    /* Перекрываем старый стиль */
+
+    /* Убираем лишнее */
+    margin-bottom: 0;
+    padding: 0;
+    box-shadow: none;
+    align-self: center;
+
+    /* 3. Анимация появления (всплытие + масштаб) */
+    opacity: 0;
+    transform: scale(0.5) translateY(20px);
+    transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    /* Эффект пружинки */
+}
+
+/* КОНЕЧНОЕ СОСТОЯНИЕ (когда JS добавляет класс visible) */
+.details .timeline-item.brush-stroke.visible {
+    opacity: 0.9;
+    /* Слегка прозрачный акварельный эффект */
+    /* Растягиваем на полную ширину */
+    transform: scale(1) translateY(0);
+    /* Задержка появления (берется из HTML style="--delay:...") */
+    transition-delay: var(--delay);
+}
+
+/* =========================================
+   РАНДОМИЗАЦИЯ ФОРМЫ (Магия живости)
+   ========================================= */
+/* Мы делаем каждый мазок уникальной формы с помощью border-radius */
+
+/* 1-й мазок */
+.brush-stroke:nth-child(1) {
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    transform: rotate(-10deg) scale(0.5);
+    /* Начальный поворот */
+}
+
+.brush-stroke.visible:nth-child(1) {
+    transform: rotate(-10deg) scale(1);
+}
+
+/* 2-й мазок */
+.brush-stroke:nth-child(2) {
+    border-radius: 66% 34% 52% 48% / 54% 39% 61% 46%;
+    width: 65px;
+    /* Чуть шире */
+}
+
+/* 3-й мазок */
+.brush-stroke:nth-child(3) {
+    border-radius: 44% 56% 37% 63% / 65% 33% 67% 35%;
+    transform: rotate(15deg) scale(0.5);
+}
+
+.brush-stroke.visible:nth-child(3) {
+    transform: rotate(15deg) scale(1);
+}
+
+/* 4-й мазок */
+.brush-stroke:nth-child(4) {
+    border-radius: 73% 27% 37% 63% / 37% 71% 29% 63%;
+}
+
+/* 5-й мазок */
+.brush-stroke:nth-child(5) {
+    border-radius: 20% 80% 20% 80% / 20% 20% 80% 80%;
+    transform: rotate(-5deg) scale(0.5);
+}
+
+.brush-stroke.visible:nth-child(5) {
+    transform: rotate(-5deg) scale(1);
+}
+
+/* 6-й мазок */
+.brush-stroke:nth-child(6) {
+    border-radius: 20% 80% 20% 80% / 20% 20% 80% 80%;
+    transform: rotate(-5deg) scale(0.5);
+}
+
+/* 7-й мазок */
+.brush-stroke:nth-child(7) {
+    border-radius: 25% 75% 15% 85% / 20% 20% 80% 80%;
+    transform: rotate(-5deg) scale(0.5);
+}
+
+.brush-stroke.visible:nth-child(8) {
+    transform: rotate(-25deg) scale(1);
+}
+
+/* 8-й мазок */
+.brush-stroke:nth-child(8) {
+    border-radius: 42% 58% 33% 67% / 60% 33% 67% 40%;
+    transform: rotate(-5deg) scale(0.5);
+}
+
+/* 9-й мазок */
+.brush-stroke:nth-child(9) {
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    transform: rotate(35deg) scale(0.5);
+}
+
+.brush-stroke.visible:nth-child(9) {
+    transform: rotate(36deg) scale(1);
+}
+
+/* =========================================
+   7. FORM & BUTTONS
+   ========================================= */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+input,
+select,
+button {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: var(--font-body);
+    box-sizing: border-box;
+    font-size: 1rem;
+    background: white;
+}
+
+/* Checkbox specific styles */
+.checkbox-group {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.checkbox-group input {
+    width: auto;
+    /* Reset width for checkboxes */
+    margin: 0;
+}
+
+button[type="submit"] {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: background 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: var(--accent-color);
+}
+
+/* Группа переключателей */
+.toggle-group {
+    margin-bottom: 15px;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    overflow: hidden;
+    /* Важно для анимации */
+}
+
+/* Строка с текстом и переключателем */
+.toggle-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+/* Скрываем стандартный чекбокс (но оставляем доступным для фокуса) */
+.toggle-row input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* --- КРАСИВЫЙ ПЕРЕКЛЮЧАТЕЛЬ (SWITCH) --- */
+.custom-toggle {
+    width: 44px;
+    height: 24px;
+    background-color: #e0e0e0;
+    border-radius: 24px;
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+
+/* Кружочек внутри переключателя */
+.custom-toggle::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+/* Состояние: Включено (Зеленый цвет свадьбы) */
+.toggle-row input:checked+.custom-toggle {
+    background-color: var(--primary-color);
+}
+
+.toggle-row input:checked+.custom-toggle::after {
+    transform: translateX(20px);
+    /* Сдвигаем кружочек вправо */
+}
+
+/* --- АНИМАЦИЯ РАСКРЫТИЯ ПОЛЕЙ --- */
+.hidden-input-wrapper {
+    max-height: 0;
+    /* Изначально высота 0 */
+    opacity: 0;
+    overflow: hidden;
+    padding: 0 15px;
+    /* Отступы по бокам */
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.3s ease,
+        padding 0.4s ease;
+    background-color: #fafafa;
+    /* Чуть темнее фон для вложенности */
+    will-change: max-height, opacity;
+}
+
+/* Класс open добавляется через JS */
+.hidden-input-wrapper.open {
+    max-height: 200px;
+    /* Достаточно места для инпутов */
+    opacity: 1;
+    padding-bottom: 15px;
+    /* Отступ снизу когда открыто */
+    border-top: 1px solid #f0f0f0;
+}
+
+/* Стили вложенных инпутов */
+.hidden-input-wrapper input {
+    margin-top: 10px;
+    margin-bottom: 0;
+    font-size: 0.9rem;
+    background: white;
+}
+
+/* =========================================
+   7. LOCATION & MAP
+   ========================================= */
+
+.location {
+    text-align: center;
+    overflow: hidden;
+    padding-bottom: 20px;
+}
+
+.venue-info h3 {
+    font-family: var(--font-head);
+    font-size: 2.5rem;
+    margin-bottom: 5px;
+    color: var(--primary-color);
+}
+
+.venue-info p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+/* --- КОЛЛАЖ (The Collage) --- */
+.gallery-collage {
+    position: relative;
+    width: 100%;
+    height: 450px;
+    /* Высота всей композиции */
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+
+
+/* Маленькие фото */
+.photo-small {
+    position: absolute;
+    width: 40%;
+    height: 180px;
+    z-index: 2;
+    /* Поверх главного */
+    border-radius: 8px;
+    /* Слегка скругленные */
+    overflow: hidden;
+    border: 4px solid white;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.5s ease;
+}
+
+/* Позиция левого фото */
+.photo-small.p-left {
+    bottom: -50px;
+    left: -2%;
+    transform: rotate(-5deg);
+    /* Небрежный наклон */
+}
+
+/* Позиция правого фото */
+.photo-small.p-right {
+    top: 170px;
+    right: -5%;
+    transform: rotate(5deg);
+}
+
+/* Общие стили для картинок внутри блоков */
+.gallery-collage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* --- КАРТА (The Map) --- */
+.map-section {
+    margin-top: 20px;
+    padding: 0 20px;
+
+    width: 90% !important;
+    align-self: center !important;
+    /* Центрируем сам блок */
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+
+    /* Сбрасываем стили карточки, чтобы карта была "чистой" */
+    background: transparent;
+    box-shadow: none;
+    text-align: center;
+}
+
+.map-frame {
+    width: 100%;
+    /* Задаем фиксированную высоту, чтобы карта была красивым прямоугольником */
+    height: 250px;
+
+    border-radius: 15px;
+    overflow: hidden;
+    border: 2px solid white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+
+    /* Ч/Б фильтр */
+    filter: grayscale(100%);
+    transition: filter 0.5s ease;
+}
+
+/* Фикс для iframe внутри (чтобы не вылезал) */
+.map-frame iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* При нажатии/наведении возвращаем цвет */
+.map-frame:hover,
+.map-frame:active {
+    filter: grayscale(0%);
+}
+
+
+/* Кнопка маршрута */
+.map-btn {
+    display: block;
+    width: fit-content;
+    margin-left: auto;
+    /* Смещаем к правой стороне */
+    margin-top: 20px;
+    padding: 10px 25px;
+
+    background-color: white;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 50px;
+    text-decoration: none;
+
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+
+    transition: all 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: -100px;
+}
+
+.map-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+    /* Легкое всплытие при нажатии */
+}
+
+/* ПРАВКИ ДЛЯ АНИМАЦИИ ВНУТРИ КОЛЛАЖА */
+/* Так как у нас absolute позиционирование, нам нужно подправить, как работает 'visible' */
+
+/* Главное фото просто всплывает */
+.photo-main.timeline-item {
+    width: 80% !important;
+    /* Фиксим ширину, которую может сбить общий стиль */
+    height: 400px;
+    /* 2. Позиционирование */
+    position: absolute;
+    top: 0;
+    left: 50% !important;
+    /* Строго по центру родителя */
+    /* 3. Сбрасываем отступы, которые мог добавить timeline-item */
+    margin: 0 !important;
+    align-self: auto !important;
+    /* 4. Дизайн Арки */
+    border-radius: 150px 150px 0 0;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    border: 4px solid white;
+    z-index: 1;
+    /* 5. НАСТРОЙКА АНИМАЦИИ (Самое важное) */
+    opacity: 0;
+    /* translate(-50%, 50px) -> Центрируем по X, сдвигаем вниз по Y */
+    transform: translate(-50%, 50px) !important;
+    transition: all 1s ease;
+}
+
+/* Когда скрипт добавляет класс .visible */
+.photo-main.timeline-item.visible {
+    opacity: 1;
+    /* Возвращаем на место по вертикали, сохраняя центровку по горизонтали */
+    transform: translate(-50%, 0) !important;
+}
+
+/* Маленькие фото должны сохранять свои позиции (left/right) при всплытии */
+.photo-small.p-left.timeline-item {
+    transform: translateY(50px) rotate(-5deg);
+    opacity: 0;
+}
+
+.photo-small.p-left.visible {
+    transform: translateY(0) rotate(-5deg);
+    opacity: 0.9;
+}
+
+.photo-small.p-right.timeline-item {
+    transform: translateY(50px) rotate(5deg);
+    opacity: 0;
+}
+
+.photo-small.p-right.visible {
+    transform: translateY(0) rotate(5deg);
+    opacity: 0.9;
+}
+
+/* =========================================
+   8. MUSIC BUTTON (FLOATING)
+   ========================================= */
+#music-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: auto;
+    z-index: 100;
+    border-radius: 20px;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--primary-color);
+    font-size: 0.8rem;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: none;
+    cursor: pointer;
+}
+
+/* =========================================
+   9. FOOTER
+   ========================================= */
+footer {
+    position: relative;
+    padding: 120px 20px 80px;
+    text-align: center;
+    margin-top: 50px;
+    color: white;
+
+    background:
+        linear-gradient(rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)),
+        url('images/chaika/shampoo3.png') center/cover no-repeat fixed;
+    /* Removed 'fixed' as it causes excessive zoom on mobile */
+    background-attachment: scroll;
+    background-position: center 61%;
+    /* Adjusted position for better focal point */
+    background-size: 100% auto;
+
+
+    /* Эффект 1: Элегантный вогнутый срез сверху (арка) */
+    clip-path: ellipse(150% 100% at 50% 100%);
+
+    /* Эффект 2: Внутренняя декоративная рамка (эффект паспарту) */
+    outline: 1px solid rgba(255, 255, 255, 0.4);
+    outline-offset: -20px;
+
+    /* Эффект 3: Мягкое внутреннее свечение */
+    box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.3);
+}
+
+footer h2 {
+    color: white;
+}
+
+/* =========================================
+   10. HIDDEN WISH FORM (SMILE BUTTON)
+   ========================================= */
+.comment-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.comment-toggle:hover {
+    color: var(--accent-color);
+}
+
+/* 1. Emoji Animation (Bounce/Scale) */
+.comment-toggle .emoji {
+    font-size: 1.3rem;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: inline-block;
+}
+
+.comment-toggle:hover .emoji {
+    transform: scale(1.4) rotate(10deg);
+}
+
+/* 2. Text Underline Animation */
+.comment-toggle .hover-underline {
+    position: relative;
+    padding-bottom: 2px;
+}
+
+.comment-toggle .hover-underline::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: currentColor;
+    /* Matches text color */
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
+}
+
+.comment-toggle:hover .hover-underline::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+#open-comment-btn:hover .emoji {
+    transform: scale(1.35);
+}
+
+#open-comment-btn:hover .text {
+    letter-spacing: 1px;
+}
+
+#open-comment-btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+.hidden-input-wrapper textarea {
+    width: 100%;
+    justify-content: center;
+}
+
+/* =========================================
+   ANIMATIONS
+   ========================================= */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

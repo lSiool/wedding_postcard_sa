@@ -1,0 +1,21 @@
+# Python / bytecode
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyo
+*.pyd
+
+# IDE (PyCharm / IntelliJ)
+.idea/
+*.iml
+*.iws
+
+# Environment / secrets (very important!)
+.env
+.env.local
+.env.*.local
+
+# Virtual environments (if you have any)
+venv/
+env/
+.venv/
