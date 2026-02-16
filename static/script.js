@@ -1,7 +1,7 @@
 // 1. Music Player
 let isPlaying = false;
 const audio = document.getElementById("bg-music");
-audio.volume = 0.3;
+audio.volume = 0.2;
 const btn = document.getElementById("music-btn");
 
 function toggleMusic() {
