@@ -1,0 +1,11 @@
+services:
+  app:
+    image: ghcr.io/lsiool/wedding_postcard_sa/main:main
+    environment:
+      - TELEGRAMM_URL=...
+      - BASIC_AUTH_USERNAME=...
+      - BASIC_AUTH_PASSWORD=...
+    ports:
+      - '8080:8000'
+    volumes:
+      - ./guests.csv:/app/guests.csv
