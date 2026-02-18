@@ -121,7 +121,7 @@ async def download_csv(_auth: bool = Depends(require_basic_auth)):
 
 # Serve static files from ./static (index.html + script.js)
 # Moved this below the API routes to avoid intercepting POST requests
-app.mount("/sa-wedding-post-card", StaticFiles(directory="static", html=True), name="static")
+app.mount("/", StaticFiles(directory="static", html=True), name="static")
 
 if __name__ == '__main__':
     import uvicorn
