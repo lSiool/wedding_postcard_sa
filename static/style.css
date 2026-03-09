@@ -851,7 +851,7 @@ button[type="submit"]:hover {
     margin-top: 20px;
     padding: 0 20px;
 
-    width: 90% !important;
+    width: 100% !important;
     align-self: center !important;
     /* Центрируем сам блок */
     margin-left: 0 !important;
