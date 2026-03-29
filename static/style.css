@@ -612,6 +612,14 @@ form {
     gap: 15px;
 }
 
+#form-message {
+    text-align: center;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin: 10px 0 0 0;
+    width: 100%;
+}
+
 
 input,
 select,
