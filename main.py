@@ -93,7 +93,7 @@ async def append_row(row: list):
 async def send_telegram_notification(message: str):
     url = f"https://api.telegram.org/bot{settings.BOT_TOKEN}/sendMessage"
     payload = {
-        "chat_id": settings.BOT_CHAT_ID,
+        "chat_id": settings.GROUP_CHAT_ID,
         "text": message,
         "parse_mode": "HTML",
     }
@@ -119,8 +119,8 @@ async def submit_rsvp(guest: Guest):
             f"🎉<b>New RSVP submitted!</b>\n"
             f"🙂 Guest: {guest.name}\n"
             f"🫡 Attandance: {guest.attendance}\n"
-            f"👶 Children: {children}\n"
         )
+        if bool(children): message.join(f"👶 Children: {children}\n")
         await send_telegram_notification(message)
     except Exception as e:
         logger.error({"Traceback": traceback.format_exc()})
