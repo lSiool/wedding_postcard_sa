@@ -7,5 +7,7 @@ class Settings:
     TELEGRAMM_URL = os.environ.get("TELEGRAMM_URL", "https://t.me/+J6HuiDI8IzxhYjIy")
     BASIC_AUTH_USERNAME = os.environ.get("BASIC_AUTH_USERNAME", "admin")
     BASIC_AUTH_PASSWORD = os.environ.get("BASIC_AUTH_PASSWORD", "863021")
+    BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
+    BOT_CHAT_ID = os.environ.get("BOT_CHAT_ID", 1234)
 
 settings = Settings()

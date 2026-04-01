@@ -4,3 +4,4 @@ pydantic>=1.10.0
 qrcode[pil]
 dotenv
 filelock
+httpx==0.28.1
