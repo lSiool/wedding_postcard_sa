@@ -120,7 +120,8 @@ async def submit_rsvp(guest: Guest):
             f"🙂 Guest: {guest.name}\n"
             f"🫡 Attandance: {guest.attendance}\n"
         )
-        if bool(children): message.join(f"👶 Children: {children}\n")
+        if children: message += f"👶 Children: {children}\n"
+        if bool(plus_one): message += f"❤️ Pair: {plus_one}\n"
         await send_telegram_notification(message)
     except Exception as e:
         logger.error({"Traceback": traceback.format_exc()})
