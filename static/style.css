@@ -612,6 +612,14 @@ form {
     gap: 15px;
 }
 
+#form-message {
+    text-align: center;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin: 10px 0 0 0;
+    width: 100%;
+}
+
 
 input,
 select,
@@ -658,13 +666,15 @@ button {
 }
 
 button[type="submit"] {
-    background-color: var(--background-color);
+    background-color: var(--bg-color);
     color: var(--text-color);
     border: 1px solid var(--primary-color);
     cursor: pointer;
     font-weight: bold;
     margin-top: 10px;
     transition: background 0.3s;
+    -webkit-appearance: none;
+    appearance: none;
 }
 
 button[type="submit"]:hover {
@@ -851,7 +861,7 @@ button[type="submit"]:hover {
     margin-top: 20px;
     padding: 0 20px;
 
-    width: 90% !important;
+    width: 100% !important;
     align-self: center !important;
     /* Центрируем сам блок */
     margin-left: 0 !important;
@@ -1012,7 +1022,7 @@ button[type="submit"]:hover {
 button[type="tg-btn"] {
     width: 90%;
     position: center;
-    background-color: var(--background-color);
+    background-color: var(--bg-color);
     color: var(--text-color);
     border: 1px solid var(--primary-color);
     cursor: pointer;
@@ -1020,6 +1030,8 @@ button[type="tg-btn"] {
     margin-top: 10px;
     transition: background 0.3s;
     margin-bottom: 30px;
+    -webkit-appearance: none;
+    appearance: none;
 }
 
 button[type="tg-btn"]:hover {

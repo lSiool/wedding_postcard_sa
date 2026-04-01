@@ -4,8 +4,10 @@ import os
 import secrets
 import shutil
 import tempfile
+import traceback
 from typing import List, Optional
 
+import httpx
 from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
@@ -15,6 +17,7 @@ from filelock import FileLock
 from pydantic import BaseModel
 from starlette.background import BackgroundTask
 
+from logger import logger
 from settings import settings
 
 DB_FILE = 'guests.csv'
@@ -87,6 +90,22 @@ async def append_row(row: list):
         await asyncio.to_thread(write_csv)
 
 
+async def send_telegram_notification(message: str):
+    url = f"https://api.telegram.org/bot{settings.BOT_TOKEN}/sendMessage"
+    payload = {
+        "chat_id": settings.GROUP_CHAT_ID,
+        "text": message,
+        "parse_mode": "HTML",
+    }
+
+    async with httpx.AsyncClient() as client:
+        r = await client.post(url, json=payload)
+    if r.status_code == 200:
+        logger.info({"status_code": 200, "message": "notification sent successfully"})
+    else:
+        logger.info({"status_code": r.status_code, "message": "notification sent successfully"})
+
+
 @app.post('/submit-rsvp')
 async def submit_rsvp(guest: Guest):
     alcohol = ", ".join(guest.alcohol or [])
@@ -95,6 +114,17 @@ async def submit_rsvp(guest: Guest):
     comment = guest.comment or ""
     row = [guest.name, guest.attendance, alcohol, plus_one, children, comment]
     await append_row(row)
+    try:
+        message = (
+            f"🎉<b>New RSVP submitted!</b>\n"
+            f"🙂 Guest: {guest.name}\n"
+            f"🫡 Attandance: {guest.attendance}\n"
+        )
+        if children: message += f"👶 Children: {children}\n"
+        if bool(plus_one): message += f"❤️ Pair: {plus_one}\n"
+        await send_telegram_notification(message)
+    except Exception as e:
+        logger.error({"Traceback": traceback.format_exc()})
     return {"status": "success", "message": "Guest saved!"}
 
 
@@ -121,7 +151,7 @@ async def download_csv(_auth: bool = Depends(require_basic_auth)):
 
 # Serve static files from ./static (index.html + script.js)
 # Moved this below the API routes to avoid intercepting POST requests
-app.mount("/sa-wedding-post-card", StaticFiles(directory="static", html=True), name="static")
+app.mount("/", StaticFiles(directory="static", html=True), name="static")
 
 if __name__ == '__main__':
     import uvicorn
