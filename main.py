@@ -116,7 +116,7 @@ async def submit_rsvp(guest: Guest):
     await append_row(row)
     try:
         message = (
-            f"🎉<b>New RSVP submitted!</b>\n"
+            f"🎉 <b>New RSVP submitted!</b>\n"
             f"🙂 Guest: {guest.name}\n"
             f"🫡 Attandance: {guest.attendance}\n"
         )
